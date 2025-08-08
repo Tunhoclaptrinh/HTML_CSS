@@ -1,0 +1,14 @@
+.box{
+    width: 100%;
+    height: calc(50px + 50px *2 );
+    background-color: aqua;
+}
+.box:hover{
+    background-color: violet;
+}
+h1:active {
+    color: red;
+}
+li:first-child, li:last-child{
+    color: green;
+}

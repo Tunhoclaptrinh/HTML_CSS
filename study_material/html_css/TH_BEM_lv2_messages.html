@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="TH_BEM_lv2_messages.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+</head>
+<body>
+    <div>
+        <div id="toast">
+            
+        </div>
+        <!-- Success -->
+        <!-- <div class="toast toast--success">
+                <div class="toast__icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+
+                <div class="toast__body">
+                    <h3 class="toast__title">Success</h3>
+                    <p class="toast__msg">Máy tính kết nối thành công với mang Internet</p>
+                </div>
+
+                <div class="toast__close">
+                    <i class="fas fa-times"></i>
+                </div>
+            </div> -->
+
+        <!-- Info -->
+        <!-- <div class="toast toast--info">
+            <div class="toast__icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+
+            <div class="toast__body">
+                <h3 class="toast__title">Info</h3>
+                <p class="toast__msg">Máy tính kết nối thành công với mang Internet</p>
+
+            </div>
+
+            <div class="toast__close">
+                <i class="fas fa-times"></i>
+            </div>
+        </div> -->
+
+        <!-- Warning -->
+        <!-- <div class="toast toast--warning">
+            <div class="toast__icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+
+            <div class="toast__body">
+                <h3 class="toast__title">Warning</h3>
+                <p class="toast__msg">Máy tính kết nối thành công với mang Internet</p>
+            </div>
+
+            <div class="toast__close">
+                <i class="fas fa-times"></i>
+            </div>
+        </div> -->
+
+        <!-- Error -->
+        <!-- <div class="toast toast--error">
+            <div class="toast__icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+
+            <div class="toast__body">
+                <h3 class="toast__title">Error</h3>
+                <p class="toast__msg">Máy tính kết nối thành công với mang Internet</p>
+
+            </div>
+
+            <div class="toast__close">
+                <i class="fas fa-times"></i>
+            </div>
+        </div> -->
+        
+    </div>
+    <div>
+        <div onclick="showSuccessToast()" class="button button--success button--size-m">Show Suceess Toast</div>
+        <div onclick="showWarnToast()" class="button button--warn button--size-m">Show Warning Toast</div>
+        <div onclick="showInfoToast()" class="button button--info button--size-m">Show Info Toast</div>
+        <div onclick="showErrorToast()" class="button button--error button--size-m">Show Error Toast</div>
+    </div>
+
+</body>
+
+<script>
+    // Show toast function
+    function toast ({
+        title = "", 
+        message = "", 
+        type = "info", 
+        duration = 3000,
+        fade = 1000
+    }) {
+        const main = document.getElementById("toast");
+        if (main) {
+            const toast = document.createElement("div");
+            const titles = {
+                success: "Success",
+                info: "Info",
+                warning: "Warning",
+                error: "Error"
+            };
+            const icons = {
+                success: "fas fa-check-circle",
+                info: "fas fa-info-circle",
+                warning: "fas fa-exclamation-circle",
+                error: "fas fa-exclamation-triangle"
+            };
+            toast.classList.add("toast");
+            toast.classList.add(`toast--${type}`); // success, info, warning, error
+            toast.style.animation = `slide-in 0.3s ease-out , fade-out ${fade}s ${duration}ms ease-out forwards`;
+            toast.innerHTML = `
+                    <div class="toast__icon">
+                        <i class="${icons[type]}"></i>
+                    </div>
+
+                    <div class="toast__body">
+                        <h3 class="toast__title">${titles[type]}</h3>
+                        <p class="toast__msg">${message}</p>
+                    </div>
+
+                    <div class="toast__close">
+                        <i class="fas fa-times"></i>
+                    </div>
+            `;
+            // Remove toast when duration is over
+            const autoRemoveId = setTimeout(() => {
+                main.removeChild(toast);
+            }, duration + fade); // 1000ms for fade-out animation
+
+
+            // Remove toast when close button is clicked
+            toast.querySelector(".toast__close").addEventListener("click", () => {
+                main.removeChild(toast);
+                clearTimeout(autoRemoveId); // Clear the timeout if the toast is closed manually
+            });
+
+            main.appendChild(toast);
+        }
+    };
+
+    function showSuccessToast() {
+        toast({
+        message: 'Máy tính kết nối thành công với mạng Internet',
+        type: 'success', // success, info, warning, error
+        duration: 5000, // thời gian hiển thị toast
+        fade: 1000 // thời gian fade-out
+    });
+    }
+
+    function showWarnToast() {
+        toast({
+        message: 'Máy tính kết nối thành công với mạng Internet',
+        type: 'warning', // success, info, warning, error
+        duration: 5000, // thời gian hiển thị toast
+        fade: 1000 // thời gian fade-out
+    });
+    }
+
+    function showInfoToast() {
+        toast({
+        message: 'Máy tính kết nối thành công với mạng Internet',
+        type: 'info', // success, info, warning, error
+        duration: 5000, // thời gian hiển thị toast
+        fade: 1000 // thời gian fade-out
+    });
+    }
+
+    function showErrorToast() {
+        toast({
+        message: 'Máy tính kết nối thành công với mạng Internet',
+        type: 'error', // success, info, warning, error
+        duration: 5000, // thời gian hiển thị toast
+        fade: 1000 // thời gian fade-out
+    });
+    }
+
+</script>
+</html>

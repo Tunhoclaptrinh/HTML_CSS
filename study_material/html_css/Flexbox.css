@@ -1,0 +1,56 @@
+.container {
+    display: flex;  /* Kích hoạt Flexbox */
+    border: 1px solid black;
+    height: 500px;
+    justify-content: space-between; /* Các phần tử con sẽ được căn cách nhau một cách đều */
+    align-items: center; /* Căn giữa theo trục phụ */
+}
+
+.item:nth-child(1) {
+    flex-grow: 1; /* Phần tử này chiếm nhiều không gian hơn */
+}
+.item:nth-child(2) {
+    flex-grow: 2; /* Gấp đôi phần tử 1 */
+}
+
+.item {
+    flex-basis: 100px; /* Mỗi phần tử sẽ có kích thước ban đầu là 100px */
+}
+
+.item {
+    flex-shrink: 1; /* Mặc định là 1 */
+}
+.item.large {
+    flex-shrink: 0; /* Không cho phép thu nhỏ */
+}
+.item {
+    flex: 1 1 auto; /* flex-grow | flex-shrink | flex-basis */
+  }
+
+  .item {
+    flex: 1; /* Tương đương với flex: 1 1 0% */
+  }
+  
+
+  .item:nth-child(2) {
+    align-self: flex-end; /* Chỉ phần tử thứ 2 nằm dưới cùng */
+  }
+  
+
+
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #333;
+    padding: 10px 20px;
+    color: white;
+  }
+  .menu {
+    display: flex;
+    list-style: none;
+  }
+  .menu li {
+    margin: 0 10px;
+  }
+  
